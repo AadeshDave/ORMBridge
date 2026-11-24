@@ -27,7 +27,7 @@ Add your screenshots to an `images` folder and link them here.
 
 | Generator page | CRUD page |
 | --- | --- |
-| ![Generator](images/sc-generator.png) | ![CRUD](images/sc-crud.png) |
+| ![Generator](sc-generator.png) | ![CRUD](sc-crud.png) |
 
 ## How to run
 
