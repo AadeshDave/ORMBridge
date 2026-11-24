@@ -1,0 +1,1 @@
+javac -classpath C:\apachetomcat11\webapps\sql-to-java\WEB-INF\classes;C:\apachetomcat11\webapps\sql-to-java\WEB-INF\lib\* *.java

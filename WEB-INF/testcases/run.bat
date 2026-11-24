@@ -1,0 +1,1 @@
+java -sourcepath -classpath ..\classes;..\lib\*;. TestCRUD

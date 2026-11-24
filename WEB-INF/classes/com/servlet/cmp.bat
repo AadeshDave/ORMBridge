@@ -1,0 +1,1 @@
+javac -classpath "C:\apachetomcat11\lib\servlet-api.jar;C:\apachetomcat11\webapps\sql-to-java\WEB-INF\lib\gson-2.14.0.jar;C:\apachetomcat11\webapps\sql-to-java\WEB-INF\classes" *.java

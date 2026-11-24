@@ -1,0 +1,106 @@
+package com.generator;
+import java.util.*;
+import com.orm.db.*;
+import java.io.*;
+public class SQLScriptParser
+{
+private static String removeComments(String script)
+{
+script=script.replaceAll("(?s)/\\*.*?\\*/"," ");
+script=script.replaceAll("--[^\\n]*","");
+return script;
+}
+private static String clean(String id)
+{
+id=id.trim();
+int comma=id.lastIndexOf('.');
+if(comma!=-1) id=id.substring(comma+1);
+return id.replaceAll("^[`\"\\[]+|[`\"\\]]+$","");
+}
+private static boolean isConstraint(String upper)
+{
+return upper.matches("(?s)^(PRIMARY\\s+KEY|UNIQUE|FOREIGN\\s+KEY|KEY|INDEX|FULLTEXT|SPATIAL|CHECK|CONSTRAINT)\\b.*");
+}
+public static Database parse(String script)
+{
+Database database=new Database();
+List<Table> tables=new ArrayList<Table>();
+try
+{
+script=removeComments(script);
+String[] splits=script.split(";");
+for(String trimmed:splits)
+{
+List<TableColumn> tableColumns=new ArrayList<TableColumn>();
+trimmed=trimmed.trim();
+if(trimmed.isEmpty())
+{
+System.out.println("String is empty");
+continue;
+}
+if(!trimmed.regionMatches(true,0,"CREATE TABLE",0,"CREATE TABLE".length()))
+{
+continue;
+}
+String newString=trimmed.substring("CREATE TABLE".length());
+newString=newString.trim();
+int position=newString.indexOf("(");
+String stringToParse=newString.substring(0,position);
+stringToParse=clean(stringToParse);
+int depth=1;
+int count=position+1;
+while(depth>0)
+{
+char currentCharecter=newString.charAt(count);
+if(currentCharecter=='(') ++depth;
+else if(currentCharecter==')') --depth;
+count++;
+}
+String columnString=newString.substring(position+1,count-1);
+List<String> listColumn=new ArrayList<String>();
+int depth2=0;
+int start=0;
+for(int index=0;index<columnString.length();++index)
+{
+char currentCharecter=columnString.charAt(index);
+if(currentCharecter=='(') ++depth2;
+else if(currentCharecter==')') --depth2;
+else if(currentCharecter==',' && depth2==0)
+{
+listColumn.add(columnString.substring(start,index));
+start=index+1;
+}
+}
+listColumn.add(columnString.substring(start));
+for(String column:listColumn)
+{
+column=column.trim();
+if(column.length()<=0) continue;
+String columnUpperCase=column.toUpperCase();
+if(isConstraint(columnUpperCase)) continue;
+String[] parts=column.split("\\s+");
+String columnName=clean(parts[0]);
+String type=parts[1];
+int pos=type.indexOf('(');
+if(pos!=-1)
+{
+type=type.substring(0,pos);
+}
+TableColumn tableColumn=new TableColumn();
+tableColumn.setName(columnName);
+tableColumn.setType(type);
+tableColumns.add(tableColumn);
+}
+Table table=new Table();
+table.setName(stringToParse);
+table.setTableColumns(tableColumns);
+tables.add(table);
+}
+database.setTables(tables);
+}catch(Exception exception)
+{
+System.out.println(exception.getMessage());
+}
+return database;
+}
+}

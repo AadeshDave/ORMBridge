@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="260" viewBox="0 0 520 260">
+  <!-- database -->
+  <g stroke="#1a3c6e" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M40 60 v70 c0 14 28 24 60 24 s60 -10 60 -24 v-70 z" fill="#ffffff"/>
+    <ellipse cx="100" cy="60" rx="60" ry="22" fill="#e6f0ff"/>
+    <path d="M40 84 c0 14 28 24 60 24 s60 -10 60 -24" fill="none"/>
+    <path d="M40 108 c0 14 28 24 60 24 s60 -10 60 -24" fill="none"/>
+  </g>
+  <!-- bridge -->
+  <g stroke="#1a3c6e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M150 140 Q260 40 370 140"/>
+    <line x1="140" y1="140" x2="380" y2="140"/>
+    <line x1="190" y1="140" x2="190" y2="104"/>
+    <line x1="225" y1="140" x2="225" y2="82"/>
+    <line x1="260" y1="140" x2="260" y2="76"/>
+    <line x1="295" y1="140" x2="295" y2="82"/>
+    <line x1="330" y1="140" x2="330" y2="104"/>
+  </g>
+  <!-- file with code -->
+  <g stroke="#1a3c6e" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M390 38 h50 l30 30 v84 a6 6 0 0 1 -6 6 h-74 a6 6 0 0 1 -6 -6 v-108 a6 6 0 0 1 6 -6 z" fill="#ffffff"/>
+    <path d="M440 38 v30 h30" fill="#e6f0ff"/>
+    <polyline points="415,92 401,106 415,120" fill="none"/>
+    <polyline points="445,92 459,106 445,120" fill="none"/>
+    <line x1="435" y1="88" x2="425" y2="124" fill="none"/>
+  </g>
+  <text x="260" y="226" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#1a3c6e">ORMBridge</text>
+</svg>

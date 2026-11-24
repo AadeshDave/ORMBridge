@@ -1,0 +1,1 @@
+javac -classpath c:\apachetomcat11\lib\jsp-api.jar;c:\apachetomcat11\lib\servlet-api.jar;c:\apachetomcat11\webapps\tags\WEB-INF\classes;. *.java
