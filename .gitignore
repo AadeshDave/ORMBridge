@@ -1,0 +1,10 @@
+# compiled files
+*.class
+
+# generated output
+annotation_output/
+pipeline_output/
+
+# secrets
+db.conf
+*.p12
